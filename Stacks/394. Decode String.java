@@ -29,7 +29,6 @@ class Solution {
             } 
             
             else {
-                // Append the current character to the current string
                 currentString.append(c);
             }
         }
