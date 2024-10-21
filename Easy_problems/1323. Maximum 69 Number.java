@@ -1,4 +1,4 @@
-//--------------------------- Method 1----------------------------
+//___________________________Method 1_______________________
 class Solution {
 	public int maximum69Number (int num) {
 		String str = Integer.toString(num);
