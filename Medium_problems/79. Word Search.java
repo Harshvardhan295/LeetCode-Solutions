@@ -17,7 +17,7 @@ class Solution {
         return false;
     }
 
-    private boolean search(char[][] board, String word, int i, int j, int index) {
+    private boolean search(char[][] board, String word, int i, int j, int index) {//i and j is for board iteration and index is for word
         if (index == word.length()) {
             return true;
         }
@@ -32,8 +32,7 @@ class Solution {
                 search(board, word, i, j + 1, index + 1) ||
                 search(board, word, i, j - 1, index + 1);
 
-        visited[i][j] = false;
-        return found;
+        visited[i][j] = false;// unmarks the current cell, allowing other potential search paths to use it
+        return found;//returns true or false
     }
 }
-
