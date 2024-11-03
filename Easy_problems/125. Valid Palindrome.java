@@ -4,7 +4,7 @@ class Solution {
         String S = s.toLowerCase();
         
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < S.length(); i++) {
+        for (int i = 0; i < S.length(); i++) {//used regular for loop
             if (Character.isLetterOrDigit(S.charAt(i))) {
                 str.append(S.charAt(i));
             }
