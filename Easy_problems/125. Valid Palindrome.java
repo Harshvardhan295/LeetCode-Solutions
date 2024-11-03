@@ -1,5 +1,6 @@
 class Solution {
     public boolean isPalindrome(String s) {
+        // converted to lowercase
         String S = s.toLowerCase();
         
         StringBuilder str = new StringBuilder();
@@ -24,11 +25,11 @@ class Solution {
 ________________________________________________
 class Solution {
     public boolean isPalindrome(String s) {
-        // to lowercase
+        // converted to lowercase
         String S = s.toLowerCase();
         
         StringBuilder str = new StringBuilder();
-        for (char c : S.toCharArray()) {
+        for (char c : S.toCharArray()) {//used for each loop
             if (Character.isLetterOrDigit(c)) {
                 str.append(c);
             }
