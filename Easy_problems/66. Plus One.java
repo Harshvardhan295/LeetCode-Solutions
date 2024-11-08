@@ -18,21 +18,4 @@ class Solution {
     }
 }
 //Brute Force
-class Solution {
-    public int[] plusOne(int[] arr) {
-        int num = 0;
-        for (int i = 0; i < arr.length; i++) {
-            num = num * 10 + arr[i];
-        }
-        
-        num += 1;
-        
-        String str = Integer.toString(num);
-        int[] result = new int[str.length()];
-        for (int i = 0; i < str.length(); i++) {
-            result[i] = str.charAt(i) - '0';
-        }
-        
-        return result;
-    }
-}
+
