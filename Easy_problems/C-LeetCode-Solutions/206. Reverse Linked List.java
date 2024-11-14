@@ -18,5 +18,12 @@ struct ListNode* reverseList(struct ListNode* head) {
         // }
         // return prev;
 
-
+//-----------recursive------------
+if (head == NULL || head->next == NULL)
+            return head;
+        struct ListNode* a = head->next;
+        struct ListNode* newHead = reverseList(a);
+        a->next = head;
+        head->next = NULL;
+        return newHead;
 }
