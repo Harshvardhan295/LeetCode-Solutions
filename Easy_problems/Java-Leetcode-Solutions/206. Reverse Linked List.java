@@ -21,6 +21,13 @@ class Solution {
         // current=Next;
         // }
         // return prev;
-
-     
+// _______________Recursive Method__________________
+        if (head == null || head.next == null)
+            return head;
+        ListNode a = head.next;
+        ListNode newHead = reverseList(a);
+        a.next = head;
+        head.next = null;
+        return newHead;
+    }   
 }
