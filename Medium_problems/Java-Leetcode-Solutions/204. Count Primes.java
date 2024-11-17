@@ -19,10 +19,10 @@ class Solution {
             }
         }
 
-        // Count the remaining as prime numbers
+        
         int count = 0;
         for (int i = 2; i < n; i++) {
-            if (isPrime[i]) {
+            if (isPrime[i]) { // Count the remaining as prime numbers
                 count++;
             }
         }
