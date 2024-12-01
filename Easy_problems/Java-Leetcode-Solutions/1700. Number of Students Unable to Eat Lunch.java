@@ -1,3 +1,4 @@
+//brute force
 import java.util.*;
 
 class Solution {
@@ -33,5 +34,25 @@ class Solution {
             }
         }
         return students.length - count;
+    }
+}
+//optimised 
+class Solution {
+    public int countStudents(int[] students, int[] sandwiches) {
+        int zeros = 0, ones = 0;
+        for (int student : students) {
+            if (student == 0) zeros++;
+            else ones++;
+        }
+        for (int sandwich : sandwiches) {
+            if (sandwich == 0) {
+                if (zeros > 0) zeros--;
+                else break;
+            } else {
+                if (ones > 0) ones--; 
+                else break; 
+            }
+        }
+        return zeros + ones;
     }
 }
