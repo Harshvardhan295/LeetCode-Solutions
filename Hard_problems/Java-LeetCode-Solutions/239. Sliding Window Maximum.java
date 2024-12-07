@@ -16,6 +16,7 @@ class Solution {
         return maxarr;
     }
 }
+//Optimised Code
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int[] maxarr = new int[nums.length - k + 1];
