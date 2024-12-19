@@ -32,4 +32,27 @@ class Solution {
         return ans;
     }
 }
+//Method 2
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> l = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
 
+        if (root != null) q.add(root);
+        
+        while (!q.isEmpty()) { 
+            int levelSize = q.size(); 
+            List<Integer> list = new ArrayList<>(); 
+            
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode front = q.remove();
+                list.add(front.val);
+                
+                if (front.left != null) q.add(front.left);
+                if (front.right != null) q.add(front.right);
+            }
+            l.add(list); 
+        }
+        return l;
+    }
+}
