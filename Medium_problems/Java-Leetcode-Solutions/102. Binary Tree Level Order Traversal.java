@@ -56,3 +56,46 @@ class Solution {
         return l;
     }
 }
+//Method using pair class
+class Solution {
+    public class Pair {
+        TreeNode node;
+        int level;
+
+        Pair(TreeNode node, int level) {
+            this.node = node;
+            this.level = level;
+        }
+    }
+    public int levels(TreeNode root) {
+        if (root == null) return 0;
+        return 1 + Math.max(levels(root.left), levels(root.right));
+    }
+    public void BFS(TreeNode root, List<List<Integer>> result) {
+        Queue<Pair> q = new LinkedList<>();
+        if (root != null) q.add(new Pair(root, 0));
+
+        while (!q.isEmpty()) {
+            Pair front = q.remove();
+            TreeNode temp = front.node;
+            int level = front.level;
+
+            result.get(level).add(temp.val);
+
+            if (temp.left != null) q.add(new Pair(temp.left, level + 1));
+            if (temp.right != null) q.add(new Pair(temp.right, level + 1));
+        }
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        int n = levels(root);
+
+        for (int i = 0; i < n; i++) {
+            result.add(new ArrayList<>());
+        }
+
+        BFS(root, result);
+        return result;
+    }
+}
