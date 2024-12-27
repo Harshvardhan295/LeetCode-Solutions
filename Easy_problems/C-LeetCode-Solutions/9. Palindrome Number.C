@@ -3,7 +3,6 @@ bool isPalindrome(int x) {
         return false;
     }
 
-    // Variables to store the original number and its reversed form
     int original = x;
     int reversed = 0;
 
