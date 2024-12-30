@@ -76,4 +76,51 @@ class Solution {
         return ans;
     }
 }
+//Method 3
+class Solution {
+    public class Pair {
+        TreeNode node;
+        int level;
+
+        Pair(TreeNode node, int level) {
+            this.node = node;
+            this.level = level;
+        }
+    }
+
+    public void BFS(TreeNode root, List<List<Integer>> result) {
+        Queue<Pair> q = new LinkedList<>();
+        if (root != null)
+            q.add(new Pair(root, 0));
+
+        while (!q.isEmpty()) {
+            Pair front = q.remove();
+            TreeNode temp = front.node;
+            int level = front.level;
+
+            // add a new sublist for that level
+            if (result.size() == level) {
+                result.add(new ArrayList<>());
+            }
+
+            result.get(level).add(temp.val);
+
+            if (temp.left != null)
+                q.add(new Pair(temp.left, level + 1));
+            if (temp.right != null)
+                q.add(new Pair(temp.right, level + 1));
+        }
+
+        // Reverse lists at odd levels
+        for (int i = 1; i < result.size(); i += 2) {
+            Collections.reverse(result.get(i));
+        }
+    }
+
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        BFS(root, result);
+        return result;
+    }
+}
 
