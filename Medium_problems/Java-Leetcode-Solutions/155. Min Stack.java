@@ -29,6 +29,7 @@ int min;
         return min;
     }
 }
+
 //Mehtod 2 using Stacks
 class MinStack {
     Stack<Integer> mainStack;
