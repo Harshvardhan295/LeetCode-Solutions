@@ -1,3 +1,4 @@
+//Method 1
 class Solution {
     public long max(TreeNode root){
         if(root==null) return Long.MIN_VALUE;
@@ -14,6 +15,26 @@ class Solution {
         if(root.val>=min(root.right)) return false;
         if(root.val<=max(root.left)) return false;
         return isValidBST(root.left) && isValidBST(root.right);
+    }
+}
+//Method 2 : Optimal code
+class Solution {
+    public void inorder(TreeNode root, List<Integer> arr) {
+        if (root == null)
+            return;
+        inorder(root.left,arr);
+        arr.add(root.val);
+        inorder(root.right,arr);
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        List<Integer> arr = new ArrayList<>();
+        inorder(root, arr);
+        for (int i = 1; i < arr.size(); i++) {
+            if (arr.get(i) <= arr.get(i - 1))
+                return false;
+        }
+        return true;
     }
 }
 
