@@ -17,7 +17,7 @@ class Solution {
         return isValidBST(root.left) && isValidBST(root.right);
     }
 }
-//Method 2 : Optimal code
+//Method 2 
 class Solution {
     public void inorder(TreeNode root, List<Integer> arr) {
         if (root == null)
@@ -37,4 +37,34 @@ class Solution {
         return true;
     }
 }
+// Method 3: Optimal Code
+class Solution {
+    public boolean flag;
 
+    public long max(TreeNode root) {
+        if (root == null)
+            return Long.MIN_VALUE;
+        long b = max(root.left);
+        if (b >= root.val)
+            flag = false;
+        long c = max(root.right);
+        return Math.max(root.val, Math.max(b, c));
+    }
+
+    public long min(TreeNode root) {
+        if (root == null)
+            return Long.MAX_VALUE;
+        long b = min(root.left);
+        long c = min(root.right);
+        if (c <= root.val)
+            flag = false;
+        return Math.min(root.val, Math.min(b, c));
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        flag = true;
+        max(root);
+        min(root);
+        return flag;
+    }
+}
