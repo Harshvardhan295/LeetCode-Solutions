@@ -8,7 +8,6 @@ class Solution {
         root.right = helper(nums, midIdx + 1, hi);
         return root;
     }
-
     public TreeNode sortedArrayToBST(int[] nums) {
         return helper(nums, 0, nums.length - 1);
     }
