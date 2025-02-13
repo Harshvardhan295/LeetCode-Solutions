@@ -12,7 +12,7 @@ class Solution {
         return expectedSum - actualSum;
     }
 }
-
+//Brute force
 class Solution {
     public int missingNumber(int[] arr) {
         int n = arr.length;
