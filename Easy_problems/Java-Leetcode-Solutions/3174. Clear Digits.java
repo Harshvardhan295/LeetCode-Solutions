@@ -1,20 +1,20 @@
 class Solution {
     public String clearDigits(String s) {
-        Stack<String> st=new Stack<>();
-        char[] str = new char[s.length()];
-        int j=0;
-        for(int i=0;i<s.length();i++){
-            if (s.charAt(i) > 96 && s.charAt(i) < 123){
+        Stack<Character> st = new Stack<>();
+        StringBuilder result = new StringBuilder();
+        
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLowerCase(s.charAt(i))) {
                 st.push(s.charAt(i));   
-            }
-            else{
-                st.pop(s.charAt(i));
-
+            } else {
+                if (!st.isEmpty()) {
+                    st.pop();
+                }
             }
         }
-        while(!st.isEmpty()){
-            str[j]=st.pop();
+        while (!st.isEmpty()) {
+            result.append(st.pop());
         }
-        Collections.reverse(str);
+        return result.reverse().toString();
     }
 }
