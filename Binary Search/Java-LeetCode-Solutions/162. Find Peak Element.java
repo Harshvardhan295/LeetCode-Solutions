@@ -1,3 +1,4 @@
+//Binary Search
 class Solution {
     public int findPeakElement(int[] nums) {
         int low = 0;
