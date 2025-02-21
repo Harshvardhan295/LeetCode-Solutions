@@ -16,6 +16,8 @@ List<Integer> arr=new ArrayList<>();
     else return (arr.get(n/2)+ arr.get(n/2-1))/2.0;
     }
 }
+
+//With swapping
 class MedianFinder {
 List<Integer> arr=new ArrayList<>();
     public MedianFinder() {
