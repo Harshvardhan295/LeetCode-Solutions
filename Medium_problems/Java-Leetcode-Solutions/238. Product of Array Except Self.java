@@ -14,7 +14,6 @@ class Solution {
             prefix *= arr[i];
         }
         
-        
         int suffix = 1;
         for (int i = n - 1; i >= 0; i--) {
             result[i] *= suffix;
@@ -24,7 +23,7 @@ class Solution {
         return result;
     }
 }
-//Space complexity:O(n)
+//Space complexity:O(n), not ideal code
 class Solution {
     public int[] productExceptSelf(int[] arr) {
         int n = arr.length;
