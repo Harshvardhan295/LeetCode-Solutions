@@ -1,4 +1,4 @@
-//Sliding Windows
+//Sliding Windows , HashMaps
 class Solution {
     public int totalFruit(int[] arr) {
         int n=arr.length;
