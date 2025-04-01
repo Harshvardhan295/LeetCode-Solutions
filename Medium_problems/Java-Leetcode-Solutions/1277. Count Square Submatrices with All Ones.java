@@ -57,4 +57,23 @@ class Solution {
         return count;
     }
 }
-//
+//Tabulation
+class Solution {
+    public int countSquares(int[][] arr) {
+        int m = arr.length, n = arr[0].length, count = 0;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (arr[i][j] == 0) continue;
+                if(i>0 && j>0){ //calculate squares from 1st row & 1st column and not from 0th
+                    int top=arr[i-1][j];
+                    int left=arr[i][j-1];
+                    int diagonal=arr[i-1][j-1];
+                    arr[i][j] = 1 + Math.min(top, Math.min(left, diagonal));
+                }
+            count +=arr[i][j]; 
+            }
+        }
+        return count;
+    }
+}
