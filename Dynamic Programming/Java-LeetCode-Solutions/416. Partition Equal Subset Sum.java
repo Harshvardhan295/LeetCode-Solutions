@@ -1,3 +1,4 @@
+//Recursion
 class Solution {
     private static boolean Subset(int i, int[] nums, int c) {
         if(i==nums.length){
@@ -8,6 +9,18 @@ class Solution {
         boolean take = Subset(i + 1, nums, c - nums[i]);
         return take||skip;
     }
+    public boolean canPartition(int[] nums) {
+        int sum=0,c=Integer.MIN_VALUE;
+        for(int ele:nums) {
+            sum+=ele;
+        }
+        if(sum%2!=0) return false;//if array sum is odd, no two equal subsets can be created
+        c=sum/2;
+        return Subset(0,nums,c);
+    }
+}
+//Memoization
+class Solution {
     private static boolean subsetMemo(int i, int[] nums, int c, int[][] dp) {
         if(i==nums.length) return c == 0;
 
