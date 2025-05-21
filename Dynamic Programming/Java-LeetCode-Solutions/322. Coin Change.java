@@ -43,3 +43,28 @@ class Solution {
         return ans;
     }
 }
+//Space Optimization
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int n = coins.length;
+        long[][] dp = new long[2][amount + 1];//i-1:0 & i=1 -> dp
+        //Tabulation with space optimization
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < amount+1; j++) {
+                long skip=(i>0) ? dp[0][j] : ((j==0) ? 0: Integer.MAX_VALUE);
+                if (j - coins[i] < 0) dp[1][j] = skip;
+                else{
+                    long take = 1 + dp[1][j - coins[i]];
+                    dp[1][j] = Math.min(skip, take);
+                }
+            }
+            //copy paste first row to 0th row
+            for(int j=0;j<amount+1;j++){
+                dp[0][j]=dp[1][j];
+            }
+        }
+        int ans = (int) dp[1][amount];
+        if (ans == Integer.MAX_VALUE) return -1;
+        return ans;
+    }
+}
