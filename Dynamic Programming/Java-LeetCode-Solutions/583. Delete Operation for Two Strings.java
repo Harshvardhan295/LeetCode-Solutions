@@ -43,3 +43,28 @@ class Solution {
         return (a.length()+b.length()) - common;
     }
 }
+//Tabulation
+class Solution {
+    //Tabulation
+    public int minDistance(String a, String b) {
+        int m=a.length(),n=b.length();
+        int[][] dp=new int[2][n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++) {
+                if(a.charAt(i)==b.charAt(j)){
+                     dp[1][j]= 1+ ((i>0 && j>0) ? dp[0][j-1] : 0);
+                }
+                else{
+                    int atake=(i>0) ? dp[0][j]:0;
+                    int btake=(j>0) ? dp[1][j-1] :0 ;
+                    dp[1][j]=Math.max(atake,btake);
+                }
+            }
+            //copy paste
+            for(int j=0;j<n;j++) dp[0][j]=dp[1][j];
+        }
+        
+        int common=2*dp[1][n-1];
+        return (a.length()+b.length()) - common;
+    }
+}
