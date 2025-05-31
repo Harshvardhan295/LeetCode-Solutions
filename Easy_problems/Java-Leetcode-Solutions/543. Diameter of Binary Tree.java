@@ -1,3 +1,27 @@
+//Hashmap with memoization
+class Solution {
+    public int levels(TreeNode root,Map<TreeNode,Integer> dp) {
+        if (root == null) return 0;
+        if(dp.containsKey(root)) return dp.get(root);
+        int leftLevels=levels(root.left,dp);
+        int rightLevels=levels(root.right,dp);
+        dp.put(root,1 + Math.max(leftLevels,rightLevels));//map.put(key,value);
+        return dp.get(root);
+    }
+    public int diameter(TreeNode root,Map<TreeNode,Integer> dp){
+        if (root == null)
+            return 0;
+
+        int diameter = levels(root.left,dp) + levels(root.right,dp);
+        int leftHeight = diameter(root.left,dp);
+        int rightHeight = diameter(root.right,dp);
+        return Math.max(diameter, Math.max(leftHeight, rightHeight));
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+        Map<TreeNode,Integer> dp=new HashMap<>();
+        return diameter(root,dp);
+    }
+}
 // Brute Force
 class Solution {
     public int levels(TreeNode root) {
@@ -17,7 +41,7 @@ class Solution {
     }
 }
 
-// Optimised Code
+// Optimised Code-using array
 class Solution {
     public int levels(TreeNode root, int[] maxDia) {
         if (root == null)
