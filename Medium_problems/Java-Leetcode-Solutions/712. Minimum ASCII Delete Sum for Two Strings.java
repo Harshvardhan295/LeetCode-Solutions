@@ -48,3 +48,37 @@ class Solution {
         return helper(s1, s2, 0, 0, m, n);
     }
 }
+
+//Tabulation
+class Solution {
+    public int minimumDeleteSum(String s1, String s2) {
+        int m = s1.length(), n = s2.length();
+        int[][] dp = new int[m + 1][n + 1];
+
+        // filling last row
+        for (int i = n - 1; i >= 0; i--) {
+            dp[m][i] = s2.charAt(i) + dp[m][i + 1];
+        }
+
+        // filling last column
+        for (int i = m - 1; i >= 0; i--) {
+            dp[i][n] = s1.charAt(i) + dp[i + 1][n];
+        }
+
+        // Filling table bottom-up
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (s1.charAt(i) == s2.charAt(j)) {
+                    dp[i][j] = dp[i + 1][j + 1];
+                } else {
+                    dp[i][j] = Math.min(
+                            s1.charAt(i) + dp[i + 1][j],
+                            s2.charAt(j) + dp[i][j + 1]
+                    );
+                }
+            }
+        }
+
+        return dp[0][0];
+    }
+}
