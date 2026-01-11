@@ -39,3 +39,32 @@ class Solution {
         return levelSums.get(k - 1);
     }
 }
+// optimised method
+class Solution {
+    public long kthLargestLevelSum(TreeNode root, int k) {
+        Queue<TreeNode> q=new LinkedList<>();
+        Queue<Long> pq=new PriorityQueue<>();
+        q.offer(root);
+        
+        while(q.size()>0){
+            int size=q.size();
+            long sum=0l;
+            for(int i=0; i<size; i++){
+                TreeNode node=q.poll();
+                sum+=node.val;
+                if(node.left!=null){
+                    q.add(node.left);
+                }
+                if(node.right!=null){
+                    q.add(node.right);
+                }
+            }
+            pq.add(sum);
+            if(pq.size()>k){
+                pq.poll();
+            }
+        }
+        if(pq.size()<k) return -1;
+        return pq.peek();
+    }
+}
