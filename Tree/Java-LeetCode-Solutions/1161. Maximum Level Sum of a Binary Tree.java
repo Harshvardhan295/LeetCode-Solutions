@@ -41,3 +41,36 @@
         return ans + 1;
     }
 }
+//BFs
+
+class Solution {
+    public int BFSmaxLevelSum(TreeNode root) {
+        int maxSum=Integer.MIN_VALUE;
+        if (root == null) return 0;
+
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int level=0,minLvl=Integer.MAX_VALUE;
+        while (!q.isEmpty()) {
+            level++;
+            int sum=0;
+            int size=q.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = q.remove();
+                sum+=node.val;
+
+                if (node.left != null) q.add(node.left);
+                if (node.right != null) q.add(node.right);
+            }
+            if(maxSum<sum){
+                maxSum=Math.max(maxSum,sum);
+                minLvl=level;
+            }
+        }
+        return minLvl;
+    }
+
+    public int maxLevelSum(TreeNode root) {
+        return BFSmaxLevelSum(root);
+    }
+}
