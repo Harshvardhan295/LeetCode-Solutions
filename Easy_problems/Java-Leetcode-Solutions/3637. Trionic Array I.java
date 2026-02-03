@@ -1,3 +1,41 @@
+//Method 1
+class Solution {
+    public boolean isTrionic(int[] nums) {
+        int n=nums.length,i=1;
+        if(n==3) return false;
+        boolean trionic=false;
+        while(i<n){ 
+            if(nums[i]>nums[i-1]) {
+                trionic=true;
+                i++;
+            }
+            else break;
+        }
+        if(!trionic) return false;
+        trionic=false;
+        while(i<n){ 
+            if(nums[i]<nums[i-1]) {
+                trionic=true;
+                i++;
+            }
+            else break;
+        }
+        if(!trionic) return false;
+        trionic=false;
+        while(i<n){ 
+            if(nums[i]>nums[i-1]) {
+                trionic=true;
+                i++;
+            }
+            else {
+                trionic=false;
+                break;
+            }
+        }
+        return trionic;
+    }
+}
+
 //Method 2
 class Solution {
     public boolean isTrionic(int[] nums) {
