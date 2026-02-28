@@ -32,8 +32,6 @@ class Solution {
 
         if(dp.containsKey(temp)) return dp.get(temp);
 
-        
-
         int ans = 0;
         ans += solve(index+1, mul*nums[(int)index], div);
         ans += solve(index+1, mul, div*nums[(int)index]);
