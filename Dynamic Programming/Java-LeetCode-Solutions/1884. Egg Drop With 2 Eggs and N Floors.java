@@ -29,3 +29,13 @@ class Solution {
         return ok(n, 2);
     }
 }
+// Method 2
+class Solution {
+    public int twoEggDrop(int n) {
+        int k = 0;
+        while (k * (k + 1) / 2 < n) {
+            k += 1;
+        }
+        return k;
+    }
+}
