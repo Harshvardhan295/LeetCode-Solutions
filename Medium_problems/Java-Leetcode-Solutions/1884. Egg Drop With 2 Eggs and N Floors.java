@@ -1,3 +1,4 @@
+//Method 1 - DP with memoization
 class Solution {
     int[][] dp = new int[1001][3];
     
