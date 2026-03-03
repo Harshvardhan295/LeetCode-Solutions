@@ -9,7 +9,6 @@ class Solution {
         prefix[0] = 1;
         prefixSet.add(nums[0]);
         
-
         for(int i = 1;i<n;i++){
             prefixSet.add(nums[i]);
             prefix[i] = prefixSet.size();
