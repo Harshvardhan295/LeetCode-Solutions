@@ -116,3 +116,28 @@ class Solution {
         return ahead[1];
     }
 }
+//Using variables
+// TC = 2n == n
+// SC= O(1)
+class Solution {
+    public int maxProfit(int[] prices) {
+        int aheadNotBuy = 0;
+        int aheadBuy = 0;
+
+        int curBuy, curNotBuy;
+        int n=prices.length;
+        for (int ind = n - 1; ind >= 0; ind--) {
+
+            curNotBuy = Math.max(prices[ind] + aheadBuy,
+                    aheadNotBuy);
+
+            curBuy = Math.max(-prices[ind] + aheadNotBuy,
+                    aheadBuy);
+
+            aheadBuy = curBuy;
+            aheadNotBuy = curNotBuy;
+        }
+
+        return aheadBuy;
+    }
+}
