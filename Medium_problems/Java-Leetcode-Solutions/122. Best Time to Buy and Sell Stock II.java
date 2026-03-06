@@ -50,7 +50,10 @@ class Solution {
         return rec(prices, 0, 1, dp);
     }
 }
+
 //Tabulation
+// TC = 2n == n
+// SC= 2n + n == n
 class Solution {
     public int maxProfit(int[] prices) {
         int n=prices.length;
@@ -77,5 +80,39 @@ class Solution {
         }
 
         return dp[0][1];
+    }
+}
+
+//Space Optimization
+// TC = 2n == n
+// SC= O(1)
+class Solution {
+    public int maxProfit(int[] prices) { 
+
+        int[] ahead = new int[2];
+        int[] cur = new int[2];
+        int n=prices.length;
+        ahead[0] = 0;
+        ahead[1] = 0;
+
+        for (int idx = n - 1; idx >= 0; idx--) {
+            for (int buy = 0; buy <= 1; buy++) {
+
+                int profit;
+
+                if (buy == 1) {
+                    profit = Math.max(-prices[idx] + ahead[0],
+                                      ahead[1]);
+                } else {
+                    profit = Math.max(prices[idx] + ahead[1],
+                                      ahead[0]);
+                }
+
+                cur[buy] = profit;
+            }
+            ahead = cur.clone(); // copy cur → ahead
+        }
+
+        return ahead[1];
     }
 }
