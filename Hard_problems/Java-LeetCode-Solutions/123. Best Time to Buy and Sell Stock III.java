@@ -106,3 +106,39 @@ class Solution {
         return dp[0][1][2];
     }
 }
+
+//Space Optimization
+class Solution {
+    public int maxProfit(int[] prices) {
+        int n = prices.length;
+        int[][] ahead = new int[2][3];
+        int[][] cur = new int[2][3];
+
+        for (int ind = n - 1; ind >= 0; ind--) {
+            for (int buy = 0; buy <= 1; buy++) {
+                for (int cap = 1; cap <= 2; cap++) {
+
+                    if (buy == 1) {
+                        cur[buy][cap] = Math.max(
+                                -prices[ind] + ahead[0][cap],
+                                ahead[1][cap] );
+                    } 
+                    else {
+                        cur[buy][cap] = Math.max(
+                                prices[ind] + ahead[1][cap - 1],
+                                ahead[0][cap] );
+                    }
+                }
+            }
+            //problem with java can't directly put value unless it is not 1D
+            // copy current → ahead
+            for (int i = 0; i < 2; i++) { 
+                for (int j = 0; j < 3; j++) {
+                    ahead[i][j] = cur[i][j];
+                }
+            }
+        }
+
+        return ahead[1][2];
+    }
+}
