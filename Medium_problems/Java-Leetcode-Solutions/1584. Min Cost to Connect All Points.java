@@ -1,3 +1,4 @@
+//BFS
 class Solution {
     public class Triplet implements Comparable<Triplet> {
         int node;
@@ -44,5 +45,67 @@ class Solution {
             }
         }
         return sum;
+    }
+}
+// DSU krushkal
+class Solution {
+    //Optimised krushkal
+    static int[] parent, size;
+    public int find(int a){
+        if(parent[a]==a) return a;
+        return parent[a]=find(parent[a]);
+    }
+    public void union(int a, int b){
+        a=find(a);
+        b=find(b);
+        if(a!=b){
+            if(size[a]>size[b]){ // attach smaller set to bigger set
+                parent[b]=a; //make a parent of b
+                size[a]+=size[b]; //update size of bigger set
+            } else{
+                parent[a]=b; //make b parent of a
+                size[b]+=size[a]; //update size of bigger set
+            }
+        }
+    }
+
+    class Edge implements Comparable<Edge>{
+        int u, v, w;
+        Edge(int u, int v, int w){
+            this.u=u;
+            this.v=v;
+            this.w=w;
+        }
+        public int compareTo(Edge e){
+            return Integer.compare(this.w, e.w);
+        }
+    }
+    public int minCostConnectPoints(int[][] points) {
+        int n=points.length,minCost=0;
+        parent=new int[n+1]; // 1 to n nodes
+        size=new int[n+1];
+        for(int i=1;i<=n;i++){
+            parent[i]=i;
+            size[i]=1;
+        }
+        //u , v , weight
+        List<Edge> edgelist=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int x = Math.abs(points[i][0]-points[j][0]);
+                int y = Math.abs(points[i][1]-points[j][1]);
+                int w= x + y;
+                edgelist.add( new Edge(i,j,w));
+            }
+        }
+        Collections.sort(edgelist); // sort based on weight
+        for(Edge edge: edgelist){
+            int u=edge.u, v=edge.v, w=edge.w;
+            if(find(u)!=find(v)){
+                union(u,v);
+                minCost+=w;
+            }
+        }
+        return minCost;
     }
 }
