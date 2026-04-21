@@ -13,3 +13,19 @@ class Solution {
         return ans;
     }
 }
+//optimal solution
+class Solution {
+    public int maximumDifference(int[] nums) {
+        int min=nums[0];
+        int diff=-1;
+        for(int i=1;i<nums.length;i++){
+            if(min<nums[i]){
+                diff=Math.max(nums[i]-min,diff);
+            }
+            else{
+                min=nums[i];
+            }
+        }
+        return diff;
+    }
+}
