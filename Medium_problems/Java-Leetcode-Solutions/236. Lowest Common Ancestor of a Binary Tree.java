@@ -1,12 +1,21 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode(int x) { val = x; }
- * }
- */
+// Optimal
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode n1, TreeNode n2) {
+        if (root == null || root.val == n1.val || root.val == n2.val) {
+            return root;
+        }
+
+        TreeNode leftLCA = lowestCommonAncestor(root.left, n1, n2);
+        TreeNode rightLCA = lowestCommonAncestor(root.right, n1, n2);
+
+        if (leftLCA != null && rightLCA != null) {
+            return root;
+        }
+
+        return (leftLCA != null) ? leftLCA : rightLCA;
+    }
+}
+// Simple solution , checking if q and q lie in same side or different side
 class Solution {
     public boolean exists(TreeNode root, TreeNode x) {
         if (root == x)
